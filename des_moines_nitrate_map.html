@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_efcca96ea8b684cb6e8765468335c95d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+            top: 10px; left: 50px; width: 400px; height: 50px; 
+            background-color: white; border:2px solid grey; z-index:9999; 
+            font-size:14px; font-weight: bold; padding: 10px">
+<p>Des Moines River Basin - Nitrate Loading at USGS Gauge Stations</p>
+</div>
+    
+<div style="position: fixed; 
+            bottom: 50px; left: 50px; width: 150px; height: 90px; 
+            background-color: white; border:2px solid grey; z-index:9999; 
+            font-size:14px; padding: 10px">
+<p><b>Nitrate Levels (mg/L)</b></p>
+<p><i class="fa fa-tint" style="color:green"></i> < 5.0 (Low)</p>
+<p><i class="fa fa-tint" style="color:orange"></i> 5.0-8.0 (Medium)</p>
+<p><i class="fa fa-tint" style="color:red"></i> > 8.0 (High)</p>
+</div>
+    
+            <div class="folium-map" id="map_efcca96ea8b684cb6e8765468335c95d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_efcca96ea8b684cb6e8765468335c95d = L.map(
+                "map_efcca96ea8b684cb6e8765468335c95d",
+                {
+                    center: [42.2, -94.2],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_2f54edad4da7d65cf7178561ee8c364e = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_2f54edad4da7d65cf7178561ee8c364e.addTo(map_efcca96ea8b684cb6e8765468335c95d);
+        
+    
+            var marker_66022d8c0e54244b280d6ac12fb7abc6 = L.marker(
+                [41.61194444, -93.6197222],
+                {
+}
+            ).addTo(map_efcca96ea8b684cb6e8765468335c95d);
+        
+    
+            var icon_b007a00b5857f0039118ce9345864678 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_59b4846cf76f660e828cc5be329d2e21 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_97ba8134ad545804e679bb4235403348 = $(`<div id="html_97ba8134ad545804e679bb4235403348" style="width: 100.0%; height: 100.0%;">     <b>Des Moines River at 2nd Avenue at Des Moines, IA</b><br>     Station ID: 05482000<br>     Avg Nitrate: 8.5 mg/L as N<br>     Drainage Area: 6245 sq mi<br>     Samples: Demonstration data     </div>`)[0];
+                popup_59b4846cf76f660e828cc5be329d2e21.setContent(html_97ba8134ad545804e679bb4235403348);
+            
+        
+
+        marker_66022d8c0e54244b280d6ac12fb7abc6.bindPopup(popup_59b4846cf76f660e828cc5be329d2e21)
+        ;
+
+        
+    
+    
+            marker_66022d8c0e54244b280d6ac12fb7abc6.bindTooltip(
+                `<div>
+                     Des Moines River at 2nd Avenue at Des Moines, IA - 8.5 mg/L
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_66022d8c0e54244b280d6ac12fb7abc6.setIcon(icon_b007a00b5857f0039118ce9345864678);
+            
+    
+            var marker_a0f673076a9756ac5b5d5429b088cd23 = L.marker(
+                [41.5785833, -93.6056111],
+                {
+}
+            ).addTo(map_efcca96ea8b684cb6e8765468335c95d);
+        
+    
+            var icon_e1d8819e5f2a7b30e2c5639b63e273c1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_02960cae3f5c73deddfeca96eab7c607 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3a365a2082e1a14c2c7fdd65fe3ad96a = $(`<div id="html_3a365a2082e1a14c2c7fdd65fe3ad96a" style="width: 100.0%; height: 100.0%;">     <b>Des Moines River below Raccoon River at Des Moines, IA</b><br>     Station ID: 05485500<br>     Avg Nitrate: 9.2 mg/L as N<br>     Drainage Area: 9879 sq mi<br>     Samples: Demonstration data     </div>`)[0];
+                popup_02960cae3f5c73deddfeca96eab7c607.setContent(html_3a365a2082e1a14c2c7fdd65fe3ad96a);
+            
+        
+
+        marker_a0f673076a9756ac5b5d5429b088cd23.bindPopup(popup_02960cae3f5c73deddfeca96eab7c607)
+        ;
+
+        
+    
+    
+            marker_a0f673076a9756ac5b5d5429b088cd23.bindTooltip(
+                `<div>
+                     Des Moines River below Raccoon River at Des Moines, IA - 9.2 mg/L
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a0f673076a9756ac5b5d5429b088cd23.setIcon(icon_e1d8819e5f2a7b30e2c5639b63e273c1);
+            
+    
+            var marker_87441b568d406db189c1423d88407dc2 = L.marker(
+                [42.71944444, -94.2202778],
+                {
+}
+            ).addTo(map_efcca96ea8b684cb6e8765468335c95d);
+        
+    
+            var icon_cb276e0673db07e48c340f13a697f707 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a9492875855139c2c5dbba138642390e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a1e05131a2e68de6e843e6e45f2c3a79 = $(`<div id="html_a1e05131a2e68de6e843e6e45f2c3a79" style="width: 100.0%; height: 100.0%;">     <b>Des Moines River at Humboldt, IA</b><br>     Station ID: 05476750<br>     Avg Nitrate: 6.8 mg/L as N<br>     Drainage Area: 2256 sq mi<br>     Samples: Demonstration data     </div>`)[0];
+                popup_a9492875855139c2c5dbba138642390e.setContent(html_a1e05131a2e68de6e843e6e45f2c3a79);
+            
+        
+
+        marker_87441b568d406db189c1423d88407dc2.bindPopup(popup_a9492875855139c2c5dbba138642390e)
+        ;
+
+        
+    
+    
+            marker_87441b568d406db189c1423d88407dc2.bindTooltip(
+                `<div>
+                     Des Moines River at Humboldt, IA - 6.8 mg/L
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_87441b568d406db189c1423d88407dc2.setIcon(icon_cb276e0673db07e48c340f13a697f707);
+            
+    
+            var marker_60c56fbe24f994b477058a93bee33bb4 = L.marker(
+                [42.7236111, -94.19333333],
+                {
+}
+            ).addTo(map_efcca96ea8b684cb6e8765468335c95d);
+        
+    
+            var icon_c2c806315db5f99465dced7191bcbde2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ff3f3ac3e573859987f530cd646b0bcb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7a25bb7a0cdd2548f757414ededf453a = $(`<div id="html_7a25bb7a0cdd2548f757414ededf453a" style="width: 100.0%; height: 100.0%;">     <b>East Fork Des Moines River at Dakota City, IA</b><br>     Station ID: 05479000<br>     Avg Nitrate: 7.1 mg/L as N<br>     Drainage Area: 1308 sq mi<br>     Samples: Demonstration data     </div>`)[0];
+                popup_ff3f3ac3e573859987f530cd646b0bcb.setContent(html_7a25bb7a0cdd2548f757414ededf453a);
+            
+        
+
+        marker_60c56fbe24f994b477058a93bee33bb4.bindPopup(popup_ff3f3ac3e573859987f530cd646b0bcb)
+        ;
+
+        
+    
+    
+            marker_60c56fbe24f994b477058a93bee33bb4.bindTooltip(
+                `<div>
+                     East Fork Des Moines River at Dakota City, IA - 7.1 mg/L
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_60c56fbe24f994b477058a93bee33bb4.setIcon(icon_c2c806315db5f99465dced7191bcbde2);
+            
+    
+            var marker_b9eb350891cfcf620688323ff01a54e4 = L.marker(
+                [42.5061111, -94.20111111],
+                {
+}
+            ).addTo(map_efcca96ea8b684cb6e8765468335c95d);
+        
+    
+            var icon_9fff34d4da1f679668895cf9faadff4a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_02f13abd49b6da78124dcca6f2fd2533 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d0042191f7665301a7ab5ff569fb782e = $(`<div id="html_d0042191f7665301a7ab5ff569fb782e" style="width: 100.0%; height: 100.0%;">     <b>Des Moines River at Fort Dodge, IA</b><br>     Station ID: 05480500<br>     Avg Nitrate: 7.5 mg/L as N<br>     Drainage Area: 4190 sq mi<br>     Samples: Demonstration data     </div>`)[0];
+                popup_02f13abd49b6da78124dcca6f2fd2533.setContent(html_d0042191f7665301a7ab5ff569fb782e);
+            
+        
+
+        marker_b9eb350891cfcf620688323ff01a54e4.bindPopup(popup_02f13abd49b6da78124dcca6f2fd2533)
+        ;
+
+        
+    
+    
+            marker_b9eb350891cfcf620688323ff01a54e4.bindTooltip(
+                `<div>
+                     Des Moines River at Fort Dodge, IA - 7.5 mg/L
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b9eb350891cfcf620688323ff01a54e4.setIcon(icon_9fff34d4da1f679668895cf9faadff4a);
+            
+    
+            var marker_d8cbc988fd72ab56f08e67817f24c4a2 = L.marker(
+                [42.35455556, -94.9910278],
+                {
+}
+            ).addTo(map_efcca96ea8b684cb6e8765468335c95d);
+        
+    
+            var icon_3e6891c0fc5e3c5cb9cffe5bb24bce39 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0221c83dfd5a9758e300717a3b4730f6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8e0a676e7ee96d088bc621ec2847e8f3 = $(`<div id="html_8e0a676e7ee96d088bc621ec2847e8f3" style="width: 100.0%; height: 100.0%;">     <b>North Raccoon River near Sac City, IA</b><br>     Station ID: 05482300<br>     Avg Nitrate: 5.2 mg/L as N<br>     Drainage Area: 700 sq mi<br>     Samples: Demonstration data     </div>`)[0];
+                popup_0221c83dfd5a9758e300717a3b4730f6.setContent(html_8e0a676e7ee96d088bc621ec2847e8f3);
+            
+        
+
+        marker_d8cbc988fd72ab56f08e67817f24c4a2.bindPopup(popup_0221c83dfd5a9758e300717a3b4730f6)
+        ;
+
+        
+    
+    
+            marker_d8cbc988fd72ab56f08e67817f24c4a2.bindTooltip(
+                `<div>
+                     North Raccoon River near Sac City, IA - 5.2 mg/L
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d8cbc988fd72ab56f08e67817f24c4a2.setIcon(icon_3e6891c0fc5e3c5cb9cffe5bb24bce39);
+            
+</script>
+</html>

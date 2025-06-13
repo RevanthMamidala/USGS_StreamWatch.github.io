@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_89e217121eb6971d46f6e3947a139aa0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+            top: 10px; left: 50px; width: 500px; height: 80px; 
+            background-color: white; border:2px solid grey; z-index:9999; 
+            font-size:16px; font-weight: bold; padding: 10px; border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+<h3 style="margin: 0 0 10px 0;">Des Moines River Basin</h3>
+<p style="margin: 0; font-size: 12px; font-weight: normal;">Nitrate Loading at USGS Gauge Stations</p>
+</div>
+    
+<div style="position: fixed; 
+            bottom: 50px; left: 50px; width: 200px; height: 200px; 
+            background-color: white; border:2px solid grey; z-index:9999; 
+            font-size:12px; padding: 15px; border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+<h4 style="margin-top: 0;">Nitrate Concentration</h4>
+<p style="margin: 5px 0;"><span style="color:green;">●</span> < 5.0 mg/L (Low)</p>
+<p style="margin: 5px 0;"><span style="color:orange;">●</span> 5.0-7.0 mg/L (Medium)</p>
+<p style="margin: 5px 0;"><span style="color:red;">●</span> 7.0-9.0 mg/L (High)</p>
+<p style="margin: 5px 0;"><span style="color:darkred;">●</span> > 9.0 mg/L (Very High)</p>
+<hr style="margin: 10px 0;">
+<p style="margin: 5px 0; font-size: 10px;"><i>Circle size indicates nitrate loading rate</i></p>
+<p style="margin: 5px 0; font-size: 10px;"><i>EPA drinking water standard: 10 mg/L</i></p>
+</div>
+    
+            <div class="folium-map" id="map_89e217121eb6971d46f6e3947a139aa0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_89e217121eb6971d46f6e3947a139aa0 = L.map(
+                "map_89e217121eb6971d46f6e3947a139aa0",
+                {
+                    center: [42.2, -94.2],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a1c1f7f033978f3796f684aff0a2ca29 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a1c1f7f033978f3796f684aff0a2ca29.addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var circle_marker_5b0a2d9bdcc014035c61c4103b5f4a64 = L.circleMarker(
+                [41.61194444, -93.6197222],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 25, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_bcac579afe4cb2c05b118f522c6b67e2 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_6a976739322a879bc30b216c9124a66c = $(`<div id="html_6a976739322a879bc30b216c9124a66c" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4 style="margin-bottom: 10px;">Des Moines River at 2nd Avenue at Des Moines, IA</h4>         <table style="width: 100%;">             <tr><td><b>Station ID:</b></td><td>05482000</td></tr>             <tr><td><b>Nitrate Concentration:</b></td><td>8.5 mg/L as N</td></tr>             <tr><td><b>Estimated Loading:</b></td><td>143164 lbs/day</td></tr>             <tr><td><b>Drainage Area:</b></td><td>6,245 sq mi</td></tr>             <tr><td><b>HUC8:</b></td><td>07100004</td></tr>             <tr><td><b>Description:</b></td><td>Major monitoring point below Saylorville Reservoir</td></tr>         </table>     </div>     </div>`)[0];
+                popup_bcac579afe4cb2c05b118f522c6b67e2.setContent(html_6a976739322a879bc30b216c9124a66c);
+            
+        
+
+        circle_marker_5b0a2d9bdcc014035c61c4103b5f4a64.bindPopup(popup_bcac579afe4cb2c05b118f522c6b67e2)
+        ;
+
+        
+    
+    
+            circle_marker_5b0a2d9bdcc014035c61c4103b5f4a64.bindTooltip(
+                `<div>
+                     Des Moines River at 2nd Avenue at Des Moines, IA<br>Nitrate: 8.5 mg/L<br>Loading: 143164 lbs/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0fcc99103baf9d70ac5ef37f53e8a513 = L.marker(
+                [41.61194444, -93.6197222],
+                {
+}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var div_icon_0c1f5134f43dabbf04e7cbf76b9474a5 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10px; font-weight: bold; color: white; text-shadow: 1px 1px 1px black;\"\u003e05482000\u003c/div\u003e",
+  "iconSize": [60, 20],
+  "iconAnchor": [30, 10],
+  "className": "empty",
+});
+        
+    
+                marker_0fcc99103baf9d70ac5ef37f53e8a513.setIcon(div_icon_0c1f5134f43dabbf04e7cbf76b9474a5);
+            
+    
+            var circle_marker_1a0e2bf911d5aee7a3becc42da949e1a = L.circleMarker(
+                [41.5785833, -93.6056111],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 25, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_e5ab7f98281286eb23900f94dd7756e4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ccdf90e25ddbae176f36fb0d16f1128d = $(`<div id="html_ccdf90e25ddbae176f36fb0d16f1128d" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4 style="margin-bottom: 10px;">Des Moines River below Raccoon River at Des Moines, IA</h4>         <table style="width: 100%;">             <tr><td><b>Station ID:</b></td><td>05485500</td></tr>             <tr><td><b>Nitrate Concentration:</b></td><td>9.2 mg/L as N</td></tr>             <tr><td><b>Estimated Loading:</b></td><td>245122 lbs/day</td></tr>             <tr><td><b>Drainage Area:</b></td><td>9,879 sq mi</td></tr>             <tr><td><b>HUC8:</b></td><td>07100008</td></tr>             <tr><td><b>Description:</b></td><td>Downstream of Raccoon River confluence</td></tr>         </table>     </div>     </div>`)[0];
+                popup_e5ab7f98281286eb23900f94dd7756e4.setContent(html_ccdf90e25ddbae176f36fb0d16f1128d);
+            
+        
+
+        circle_marker_1a0e2bf911d5aee7a3becc42da949e1a.bindPopup(popup_e5ab7f98281286eb23900f94dd7756e4)
+        ;
+
+        
+    
+    
+            circle_marker_1a0e2bf911d5aee7a3becc42da949e1a.bindTooltip(
+                `<div>
+                     Des Moines River below Raccoon River at Des Moines, IA<br>Nitrate: 9.2 mg/L<br>Loading: 245122 lbs/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9de217e81840ea8ec55ba67e070d5ea8 = L.marker(
+                [41.5785833, -93.6056111],
+                {
+}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var div_icon_e022956e2ded1299502bd218ce13d605 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10px; font-weight: bold; color: white; text-shadow: 1px 1px 1px black;\"\u003e05485500\u003c/div\u003e",
+  "iconSize": [60, 20],
+  "iconAnchor": [30, 10],
+  "className": "empty",
+});
+        
+    
+                marker_9de217e81840ea8ec55ba67e070d5ea8.setIcon(div_icon_e022956e2ded1299502bd218ce13d605);
+            
+    
+            var circle_marker_32b535c0475bf61bfb0b311d5d1902e7 = L.circleMarker(
+                [42.71944444, -94.2202778],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 25, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_349435f71277ab304fa1d80d1b29ac46 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_cb2e46deab612f7d0881831bbc6588c3 = $(`<div id="html_cb2e46deab612f7d0881831bbc6588c3" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4 style="margin-bottom: 10px;">Des Moines River at Humboldt, IA</h4>         <table style="width: 100%;">             <tr><td><b>Station ID:</b></td><td>05476750</td></tr>             <tr><td><b>Nitrate Concentration:</b></td><td>6.8 mg/L as N</td></tr>             <tr><td><b>Estimated Loading:</b></td><td>41374 lbs/day</td></tr>             <tr><td><b>Drainage Area:</b></td><td>2,256 sq mi</td></tr>             <tr><td><b>HUC8:</b></td><td>07100002</td></tr>             <tr><td><b>Description:</b></td><td>Upper Des Moines River watershed</td></tr>         </table>     </div>     </div>`)[0];
+                popup_349435f71277ab304fa1d80d1b29ac46.setContent(html_cb2e46deab612f7d0881831bbc6588c3);
+            
+        
+
+        circle_marker_32b535c0475bf61bfb0b311d5d1902e7.bindPopup(popup_349435f71277ab304fa1d80d1b29ac46)
+        ;
+
+        
+    
+    
+            circle_marker_32b535c0475bf61bfb0b311d5d1902e7.bindTooltip(
+                `<div>
+                     Des Moines River at Humboldt, IA<br>Nitrate: 6.8 mg/L<br>Loading: 41374 lbs/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f29bc23f4678d54e108754e542eb1aa1 = L.marker(
+                [42.71944444, -94.2202778],
+                {
+}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var div_icon_6a5fc38e61bd31515bf3b58365e51fd1 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10px; font-weight: bold; color: white; text-shadow: 1px 1px 1px black;\"\u003e05476750\u003c/div\u003e",
+  "iconSize": [60, 20],
+  "iconAnchor": [30, 10],
+  "className": "empty",
+});
+        
+    
+                marker_f29bc23f4678d54e108754e542eb1aa1.setIcon(div_icon_6a5fc38e61bd31515bf3b58365e51fd1);
+            
+    
+            var circle_marker_78fe7fadb801002bcaaa7db3fe83dbfe = L.circleMarker(
+                [42.7236111, -94.19333333],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 25, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_9dc7b90d2b7461f0a22324b15a6b70d5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4e29eee30970c725fed3458f49edacbf = $(`<div id="html_4e29eee30970c725fed3458f49edacbf" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4 style="margin-bottom: 10px;">East Fork Des Moines River at Dakota City, IA</h4>         <table style="width: 100%;">             <tr><td><b>Station ID:</b></td><td>05479000</td></tr>             <tr><td><b>Nitrate Concentration:</b></td><td>7.1 mg/L as N</td></tr>             <tr><td><b>Estimated Loading:</b></td><td>25046 lbs/day</td></tr>             <tr><td><b>Drainage Area:</b></td><td>1,308 sq mi</td></tr>             <tr><td><b>HUC8:</b></td><td>07100003</td></tr>             <tr><td><b>Description:</b></td><td>East Fork before confluence with main stem</td></tr>         </table>     </div>     </div>`)[0];
+                popup_9dc7b90d2b7461f0a22324b15a6b70d5.setContent(html_4e29eee30970c725fed3458f49edacbf);
+            
+        
+
+        circle_marker_78fe7fadb801002bcaaa7db3fe83dbfe.bindPopup(popup_9dc7b90d2b7461f0a22324b15a6b70d5)
+        ;
+
+        
+    
+    
+            circle_marker_78fe7fadb801002bcaaa7db3fe83dbfe.bindTooltip(
+                `<div>
+                     East Fork Des Moines River at Dakota City, IA<br>Nitrate: 7.1 mg/L<br>Loading: 25046 lbs/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_39c8be87244176733ee7a0088e00ae32 = L.marker(
+                [42.7236111, -94.19333333],
+                {
+}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var div_icon_96fb238b7753f821dec299855480e3a9 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10px; font-weight: bold; color: white; text-shadow: 1px 1px 1px black;\"\u003e05479000\u003c/div\u003e",
+  "iconSize": [60, 20],
+  "iconAnchor": [30, 10],
+  "className": "empty",
+});
+        
+    
+                marker_39c8be87244176733ee7a0088e00ae32.setIcon(div_icon_96fb238b7753f821dec299855480e3a9);
+            
+    
+            var circle_marker_842ef3967b0fd269b7cc63db1495f6f1 = L.circleMarker(
+                [42.5061111, -94.20111111],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 25, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_928d13001573a8e9625aec26a77b8ce4 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0fbdd5dac3e93990c7ce08b687cc3d14 = $(`<div id="html_0fbdd5dac3e93990c7ce08b687cc3d14" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4 style="margin-bottom: 10px;">Des Moines River at Fort Dodge, IA</h4>         <table style="width: 100%;">             <tr><td><b>Station ID:</b></td><td>05480500</td></tr>             <tr><td><b>Nitrate Concentration:</b></td><td>7.5 mg/L as N</td></tr>             <tr><td><b>Estimated Loading:</b></td><td>84753 lbs/day</td></tr>             <tr><td><b>Drainage Area:</b></td><td>4,190 sq mi</td></tr>             <tr><td><b>HUC8:</b></td><td>07100004</td></tr>             <tr><td><b>Description:</b></td><td>Middle Des Moines River watershed</td></tr>         </table>     </div>     </div>`)[0];
+                popup_928d13001573a8e9625aec26a77b8ce4.setContent(html_0fbdd5dac3e93990c7ce08b687cc3d14);
+            
+        
+
+        circle_marker_842ef3967b0fd269b7cc63db1495f6f1.bindPopup(popup_928d13001573a8e9625aec26a77b8ce4)
+        ;
+
+        
+    
+    
+            circle_marker_842ef3967b0fd269b7cc63db1495f6f1.bindTooltip(
+                `<div>
+                     Des Moines River at Fort Dodge, IA<br>Nitrate: 7.5 mg/L<br>Loading: 84753 lbs/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_709d22b996c7c4ee12512202b186feb8 = L.marker(
+                [42.5061111, -94.20111111],
+                {
+}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var div_icon_10c1e46dd4513b5b12350c0d397edea4 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10px; font-weight: bold; color: white; text-shadow: 1px 1px 1px black;\"\u003e05480500\u003c/div\u003e",
+  "iconSize": [60, 20],
+  "iconAnchor": [30, 10],
+  "className": "empty",
+});
+        
+    
+                marker_709d22b996c7c4ee12512202b186feb8.setIcon(div_icon_10c1e46dd4513b5b12350c0d397edea4);
+            
+    
+            var circle_marker_88325e5e43b444507ba26d01a4145283 = L.circleMarker(
+                [42.35455556, -94.9910278],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.81708, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_da48043ec2a69dd3790e52970688e65b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ab6ca041b95d1ac49fd536b4f8341ba9 = $(`<div id="html_ab6ca041b95d1ac49fd536b4f8341ba9" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4 style="margin-bottom: 10px;">North Raccoon River near Sac City, IA</h4>         <table style="width: 100%;">             <tr><td><b>Station ID:</b></td><td>05482300</td></tr>             <tr><td><b>Nitrate Concentration:</b></td><td>5.2 mg/L as N</td></tr>             <tr><td><b>Estimated Loading:</b></td><td>9817 lbs/day</td></tr>             <tr><td><b>Drainage Area:</b></td><td>700 sq mi</td></tr>             <tr><td><b>HUC8:</b></td><td>07100006</td></tr>             <tr><td><b>Description:</b></td><td>North Raccoon River tributary</td></tr>         </table>     </div>     </div>`)[0];
+                popup_da48043ec2a69dd3790e52970688e65b.setContent(html_ab6ca041b95d1ac49fd536b4f8341ba9);
+            
+        
+
+        circle_marker_88325e5e43b444507ba26d01a4145283.bindPopup(popup_da48043ec2a69dd3790e52970688e65b)
+        ;
+
+        
+    
+    
+            circle_marker_88325e5e43b444507ba26d01a4145283.bindTooltip(
+                `<div>
+                     North Raccoon River near Sac City, IA<br>Nitrate: 5.2 mg/L<br>Loading: 9817 lbs/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9809980ed937e110a0e54460503b8182 = L.marker(
+                [42.35455556, -94.9910278],
+                {
+}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var div_icon_9bc394efc6a263f4992c3091f01154a1 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10px; font-weight: bold; color: white; text-shadow: 1px 1px 1px black;\"\u003e05482300\u003c/div\u003e",
+  "iconSize": [60, 20],
+  "iconAnchor": [30, 10],
+  "className": "empty",
+});
+        
+    
+                marker_9809980ed937e110a0e54460503b8182.setIcon(div_icon_9bc394efc6a263f4992c3091f01154a1);
+            
+    
+            var circle_marker_60f833b912400ec61e1d11a9e654b557 = L.circleMarker(
+                [42.43277778, -93.80555556],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.3404884, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_cfc8538630f6bd464a19c5a9f548cf55 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0ad1eda421b5a204fe455be63e0c8ed3 = $(`<div id="html_0ad1eda421b5a204fe455be63e0c8ed3" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4 style="margin-bottom: 10px;">Boone River near Webster City, IA</h4>         <table style="width: 100%;">             <tr><td><b>Station ID:</b></td><td>05481000</td></tr>             <tr><td><b>Nitrate Concentration:</b></td><td>6.3 mg/L as N</td></tr>             <tr><td><b>Estimated Loading:</b></td><td>14340 lbs/day</td></tr>             <tr><td><b>Drainage Area:</b></td><td>844 sq mi</td></tr>             <tr><td><b>HUC8:</b></td><td>07100005</td></tr>             <tr><td><b>Description:</b></td><td>Boone River tributary watershed</td></tr>         </table>     </div>     </div>`)[0];
+                popup_cfc8538630f6bd464a19c5a9f548cf55.setContent(html_0ad1eda421b5a204fe455be63e0c8ed3);
+            
+        
+
+        circle_marker_60f833b912400ec61e1d11a9e654b557.bindPopup(popup_cfc8538630f6bd464a19c5a9f548cf55)
+        ;
+
+        
+    
+    
+            circle_marker_60f833b912400ec61e1d11a9e654b557.bindTooltip(
+                `<div>
+                     Boone River near Webster City, IA<br>Nitrate: 6.3 mg/L<br>Loading: 14340 lbs/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9a4a3c0cfffbffdfaf525e2be9775014 = L.marker(
+                [42.43277778, -93.80555556],
+                {
+}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var div_icon_71001df3c2b714f1e3d79346d56ef28a = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10px; font-weight: bold; color: white; text-shadow: 1px 1px 1px black;\"\u003e05481000\u003c/div\u003e",
+  "iconSize": [60, 20],
+  "iconAnchor": [30, 10],
+  "className": "empty",
+});
+        
+    
+                marker_9a4a3c0cfffbffdfaf525e2be9775014.setIcon(div_icon_71001df3c2b714f1e3d79346d56ef28a);
+            
+    
+            var circle_marker_2362d029c3c9553dbec68a8de241ebce = L.circleMarker(
+                [41.69, -94.3625],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.696064000000001, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_d9fd5adbbc2d8f3b785af90a8db6ceff = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9b85ade3f014ea1aebbfdf183e06cb56 = $(`<div id="html_9b85ade3f014ea1aebbfdf183e06cb56" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">         <h4 style="margin-bottom: 10px;">Middle Raccoon River at Panora, IA</h4>         <table style="width: 100%;">             <tr><td><b>Station ID:</b></td><td>05483450</td></tr>             <tr><td><b>Nitrate Concentration:</b></td><td>4.8 mg/L as N</td></tr>             <tr><td><b>Estimated Loading:</b></td><td>5696 lbs/day</td></tr>             <tr><td><b>Drainage Area:</b></td><td>440 sq mi</td></tr>             <tr><td><b>HUC8:</b></td><td>07100007</td></tr>             <tr><td><b>Description:</b></td><td>South Raccoon River tributary</td></tr>         </table>     </div>     </div>`)[0];
+                popup_d9fd5adbbc2d8f3b785af90a8db6ceff.setContent(html_9b85ade3f014ea1aebbfdf183e06cb56);
+            
+        
+
+        circle_marker_2362d029c3c9553dbec68a8de241ebce.bindPopup(popup_d9fd5adbbc2d8f3b785af90a8db6ceff)
+        ;
+
+        
+    
+    
+            circle_marker_2362d029c3c9553dbec68a8de241ebce.bindTooltip(
+                `<div>
+                     Middle Raccoon River at Panora, IA<br>Nitrate: 4.8 mg/L<br>Loading: 5696 lbs/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2a4ce7c219425e76f12d35b4b95c82c6 = L.marker(
+                [41.69, -94.3625],
+                {
+}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+            var div_icon_1c4f3cafd981a2991666c4ddcc488413 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 10px; font-weight: bold; color: white; text-shadow: 1px 1px 1px black;\"\u003e05483450\u003c/div\u003e",
+  "iconSize": [60, 20],
+  "iconAnchor": [30, 10],
+  "className": "empty",
+});
+        
+    
+                marker_2a4ce7c219425e76f12d35b4b95c82c6.setIcon(div_icon_1c4f3cafd981a2991666c4ddcc488413);
+            
+    
+            var polygon_b3e0285b280918497fd020fc648e430b = L.polygon(
+                [[44.0, -95.5], [44.0, -92.5], [40.5, -92.0], [40.5, -95.0], [44.0, -95.5]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_89e217121eb6971d46f6e3947a139aa0);
+        
+    
+        var popup_6909702255f0af543a6401b3f024ffbd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3bc4382a8ab72eac9db14d5f3f5acc7f = $(`<div id="html_3bc4382a8ab72eac9db14d5f3f5acc7f" style="width: 100.0%; height: 100.0%;">Des Moines River Basin (approximate boundary)</div>`)[0];
+                popup_6909702255f0af543a6401b3f024ffbd.setContent(html_3bc4382a8ab72eac9db14d5f3f5acc7f);
+            
+        
+
+        polygon_b3e0285b280918497fd020fc648e430b.bindPopup(popup_6909702255f0af543a6401b3f024ffbd)
+        ;
+
+        
+    
+</script>
+</html>

@@ -1,0 +1,9 @@
+name,lat,lon,drainage_area,typical_nitrate,huc8,description,station_id,estimated_discharge_cfs,nitrate_loading_lbs_per_day
+"Des Moines River at 2nd Avenue at Des Moines, IA",41.61194444,-93.6197222,6245,8.5,07100004,Major monitoring point below Saylorville Reservoir,05482000,3122.5,143163.5025
+"Des Moines River below Raccoon River at Des Moines, IA",41.5785833,-93.6056111,9879,9.2,07100008,Downstream of Raccoon River confluence,05485500,4939.5,245121.69959999996
+"Des Moines River at Humboldt, IA",42.71944444,-94.2202778,2256,6.8,07100002,Upper Des Moines River watershed,05476750,1128.0,41374.1376
+"East Fork Des Moines River at Dakota City, IA",42.7236111,-94.19333333,1308,7.1,07100003,East Fork before confluence with main stem,05479000,654.0,25046.4996
+"Des Moines River at Fort Dodge, IA",42.5061111,-94.20111111,4190,7.5,07100004,Middle Des Moines River watershed,05480500,2095.0,84753.225
+"North Raccoon River near Sac City, IA",42.35455556,-94.9910278,700,5.2,07100006,North Raccoon River tributary,05482300,350.0,9817.08
+"Boone River near Webster City, IA",42.43277778,-93.80555556,844,6.3,07100005,Boone River tributary watershed,05481000,422.0,14340.4884
+"Middle Raccoon River at Panora, IA",41.69,-94.3625,440,4.8,07100007,South Raccoon River tributary,05483450,220.0,5696.064

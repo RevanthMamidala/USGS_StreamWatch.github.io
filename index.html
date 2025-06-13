@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Des Moines River Basin - Nitrate Loading Monitor</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1>Des Moines River Basin Nitrate Loading Monitor</h1>
+                <p class="header-subtitle">Interactive map of USGS gauge stations monitoring nitrate concentrations and loading rates</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="map-container">
+                <div id="map" class="map"></div>
+                
+                <!-- Map Legend -->
+                <div class="legend">
+                    <h3>Nitrate Concentration Levels</h3>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-color legend-green"></div>
+                            <span>Low (&lt; 5.0 mg/L)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-orange"></div>
+                            <span>Medium (5.0-7.0 mg/L)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-red"></div>
+                            <span>High (7.0-9.0 mg/L)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-dark-red"></div>
+                            <span>Very High (&gt; 9.0 mg/L)</span>
+                        </div>
+                    </div>
+                    <div class="legend-note">
+                        <small>EPA Drinking Water Standard: 10 mg/L</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <!-- Summary Statistics -->
+                <section class="summary-section">
+                    <h2>Watershed Summary</h2>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <div class="summary-value">8</div>
+                            <div class="summary-label">Monitoring Stations</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-value">6.9</div>
+                            <div class="summary-label">Avg Nitrate (mg/L)</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-value">569,312</div>
+                            <div class="summary-label">Total Loading (lbs/day)</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-value">4</div>
+                            <div class="summary-label">Stations > 7 mg/L</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Station Data Table -->
+                <section class="data-section">
+                    <h2>Station Data</h2>
+                    <div class="table-container">
+                        <table id="stations-table" class="stations-table">
+                            <thead>
+                                <tr>
+                                    <th data-sort="station_id">Station ID</th>
+                                    <th data-sort="name">Name</th>
+                                    <th data-sort="typical_nitrate">Nitrate (mg/L)</th>
+                                    <th data-sort="nitrate_loading_lbs_per_day">Loading (lbs/day)</th>
+                                    <th data-sort="drainage_area">Drainage Area (mi²)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="stations-tbody">
+                                <!-- Table rows will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Information Panel -->
+                <section class="info-section">
+                    <h2>About Nitrate Loading</h2>
+                    <div class="info-content">
+                        <p>Nitrate loading represents the mass of nitrate transported by river systems, primarily from agricultural runoff and wastewater discharge. High nitrate levels can impact drinking water quality and aquatic ecosystems.</p>
+                        
+                        <h3>Key Information</h3>
+                        <ul>
+                            <li><strong>EPA Standard:</strong> 10 mg/L maximum for drinking water</li>
+                            <li><strong>Sources:</strong> Agricultural fertilizers, livestock waste, urban runoff</li>
+                            <li><strong>Health Impact:</strong> Exceeding standards can cause methemoglobinemia in infants</li>
+                        </ul>
+                        
+                        <div class="data-source">
+                            <small><strong>Data Source:</strong> U.S. Geological Survey (USGS) National Water Information System</small>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
